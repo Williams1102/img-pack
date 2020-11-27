@@ -4,9 +4,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-require("dotenv").config();
 require("./models/connect");
 require("./models/schema");
+require('./config/passport');
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");

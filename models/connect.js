@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { database } = require("../config/environment");
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -8,4 +8,6 @@ const options = {
   autoIndex: false, // Don't build indexes
 };
 
-mongoose.connect(process.env.DB_IMGPACK, options);
+mongoose.connect(database, options, () => {
+  console.log("database connected ! ");
+});

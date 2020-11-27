@@ -15,7 +15,7 @@ const images = new Schema(
       type: Schema.Types.ObjectId,
       ref: "users",
     },
-    collection: {
+    collectionId: {
       type: Schema.Types.ObjectId,
       ref: "collections",
     },
@@ -23,6 +23,6 @@ const images = new Schema(
   { timestamp: true }
 );
 
-images.index({ source: 1, author: 1, collection: 1 });
+images.index({ source: 1, author: 1, collectionId: 1 });
 
 module.exports = images;
