@@ -13,9 +13,15 @@ const users = new Schema(
     },
     birthday: {
       type: Date,
+      required: true,
     },
     avatar: {
       type: String,
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+      default: "other",
     },
   },
   { timestamp: true }
