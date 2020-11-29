@@ -6,6 +6,7 @@ const users = new Schema(
     email: {
       type: String,
       required: true,
+      index: true,
     },
     password: {
       type: String,
@@ -26,7 +27,5 @@ const users = new Schema(
   },
   { timestamp: true }
 );
-
-users.index({ email: 1 });
 
 module.exports = users;

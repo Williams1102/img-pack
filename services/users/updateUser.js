@@ -5,7 +5,7 @@ const config= require("../../config");
 
 const { model } = mongoose;
 const { hash } = bcrypt;
-const { emailRegex, saltBcrypt } = config;
+const { emailRegex, SALT_BCRYPT } = config;
 const updateUser = async ({ info }) => {
   try {
     const { birthday, gender, oldPassword, password, confirmPassword, email } = info;
@@ -39,7 +39,7 @@ const updateUser = async ({ info }) => {
       }
 
       // hash password
-      updateData.password = await bcrypt.hash(password, saltBcrypt);
+      updateData.password = await bcrypt.hash(password, SALT_BCRYPT);
     }
 
     // config options  - update

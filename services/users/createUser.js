@@ -5,10 +5,11 @@ const config = require("../../config");
 
 const { model } = mongoose;
 const { hash } = bcrypt;
-const { emailRegex, saltBcrypt } = config;
+const { emailRegex, SALT_BCRYPT } = config;
 const createUser = async ({ infoUser }) => {
   try {
     const { email, password, confirmPassword, birthday } = infoUser;
+    
     //check email
     const isEmail = emailRegex.test(email);
     if (!isEmail) {
@@ -24,13 +25,23 @@ const createUser = async ({ infoUser }) => {
         error: { message: "Password and confirm password is not matched !" },
       };
     }
+
+    // check email is exists in database
+    const isExists = await model("users").findOne({ email }).lean();
+    if (isExists) {
+      return {
+        code: 400,
+        error: { message: "users is existed !" },
+      };
+    }
+
     // hash password
-    let hashPassword = await hash(password, saltBcrypt);
+    let hashPassword = await hash(password, SALT_BCRYPT);
     // info user before save in database
     const userData = {
       email,
       password: hashPassword,
-      birthday: moment(birthday, "x"),
+      birthday: moment(birthday, ["DD-MM-YYYY", "DD/MM/YYYY"]).unix() * 1000,
     };
     // create and get info user in database
     const created = await model("users").create(userData);

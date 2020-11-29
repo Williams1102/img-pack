@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("../config");
 
-const { database } = config;
+const { DB_IMGPACK } = config;
 
 const options = {
   useNewUrlParser: true,
@@ -11,6 +11,6 @@ const options = {
   autoIndex: false, // Don't build indexes
 };
 
-mongoose.connect(database, options, () => {
+mongoose.connect(DB_IMGPACK, options, () => {
   console.log("database connected ! ");
 });
