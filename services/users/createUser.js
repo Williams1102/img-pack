@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
+const config = require("../../config");
 
 const { model } = mongoose;
 const { hash } = bcrypt;
-const { emailRegex, saltBcrypt } = require("../config");
-
+const { emailRegex, saltBcrypt } = config;
 const createUser = async ({ infoUser }) => {
   try {
     const { email, password, confirmPassword, birthday } = infoUser;
-
     //check email
     const isEmail = emailRegex.test(email);
     if (!isEmail) {
       return {
-        code: 404,
+        code: 200,
         error: { message: "You need to fill email !" },
       };
     }
@@ -31,7 +30,7 @@ const createUser = async ({ infoUser }) => {
     const userData = {
       email,
       password: hashPassword,
-      birthday: moment(birthday, "x")
+      birthday: moment(birthday, "x"),
     };
     // create and get info user in database
     const created = await model("users").create(userData);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const { model } = mongoose;
 const schema = require("./schemas");
+const { model } = mongoose;
 
 module.exports = {
   bookmarkImages: model("bookmarkImages", schema.bookmarkImages),

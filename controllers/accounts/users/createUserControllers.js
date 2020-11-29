@@ -1,9 +1,10 @@
-const { createUser } = require("../../../services/users/createUser");
+const createUser = require("../../../services/users/createUser");
 
 const createUserControllers = async (req, res) => {
   try {
-    const result = createUser({ infoUser: req.body });
-    return res.status(result.code).json(result);
+    const result = await createUser({ infoUser: req.body });
+    console.log(result);
+    res.status(result.code).json(result);
   } catch (e) {
     res.status(500).json({
       code: 500,

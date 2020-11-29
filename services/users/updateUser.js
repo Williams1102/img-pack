@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 const bcrypt = require("bcrypt");
+const config= require("../../config");
 
 const { model } = mongoose;
-const { saltBcrypt } = require("../config");
-
+const { hash } = bcrypt;
+const { emailRegex, saltBcrypt } = config;
 const updateUser = async ({ info }) => {
   try {
     const { birthday, gender, oldPassword, password, confirmPassword, email } = info;

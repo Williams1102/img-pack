@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const fileUpload = require("express-fileUpload");
+
 
 require("dotenv").config();
 require("./models/connect");
@@ -17,7 +19,7 @@ const app = express();
 
 app.use(helmet());
 app.use(cors());
-
+app.use(fileUpload({ limits: { fileSize: 50 * 1024 * 1024 } }));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

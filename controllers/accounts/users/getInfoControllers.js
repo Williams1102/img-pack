@@ -2,8 +2,8 @@ const getUser = require("../../../services/users/getUserInfo");
 
 const getInfo = async (req, res) => {
   try {
-    const result = await getUser({ info: req.body });
-    return res.status(result.code).json(result);
+    const result = await getUser({ info: req.header });
+    res.status(result.code).json(result);
   } catch (e) {
     return {
       code: 500,
