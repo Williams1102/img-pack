@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
-const fileUpload = require("express-fileUpload");
+const fileUpload = require("express-fileupload");
 
 
 require("dotenv").config();
