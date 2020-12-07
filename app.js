@@ -9,9 +9,9 @@ const fileUpload = require("express-fileupload");
 
 
 require("dotenv").config();
-require("./models/connect");
-require("./models/schema");
-require("./config/passport");
+require("models/connect");
+require("models/schema");
+require("config/passport");
 
 const indexRouter = require("./routes");
 

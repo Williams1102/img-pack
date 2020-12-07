@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "cross-env NODE_PATH=./ nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -24,5 +24,10 @@
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "sharp": "^0.26.3",
+    "uuid": "^8.3.1"
   }
 }
