@@ -18,6 +18,7 @@ const users = new Schema(
     },
     avatar: {
       type: String,
+      default: "default.png"
     },
     gender: {
       type: String,
