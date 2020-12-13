@@ -1,15 +1,26 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
-const config= require("../../config");
+const config = require("../../config");
 
 const { model } = mongoose;
 const { hash } = bcrypt;
 const { emailRegex, SALT_BCRYPT } = config;
 const updateUser = async ({ info }) => {
   try {
-    const { birthday, gender, oldPassword, password, confirmPassword, email } = info;
+    const { birthday, gender, password, newPassword, confirmPassword, email } = info;
+
     const query = { email };
+    // find user by email in database
+    const user = await model("users").findOne(query).lean();
+    //check input password & database password is matched
+    const correctPassword = user.validatePassword(password);
+    if (!correctPassword) {
+      return {
+        code: 400,
+        error: { message: "Current Password is incorrect!" },
+      };
+    }
     let updateData;
     // case: update gender
     if (gender) updateData.gender = gender;
@@ -18,40 +29,25 @@ const updateUser = async ({ info }) => {
     //case: update password
     if (password) {
       // check new password and confirm-password is matched
-      if (password !== confirmPassword) {
+      if (newPassword !== confirmPassword) {
         return {
           code: 400,
           error: { message: " New password and confirm-password is not matched" },
         };
       }
-
-      // find user by email in database
-      const user = await model("users").findOne(query).lean();
-
-      //check input password & database password is matched
-      const correctPassword = await bcrypt.compare(oldPassword, user.password);
-
-      if (!correctPassword) {
-        return {
-          code: 400,
-          error: { message: "Current Password is incorrect!" },
-        };
-      }
-
       // hash password
-      updateData.password = await bcrypt.hash(password, SALT_BCRYPT);
+      await user.setPassword(newPassword);
     }
 
     // config options  - update
     const options = { new: true };
-    await model("users").findOneAndUpdate(query, updateData, options);
+    user.updateMany(query, updateData, options);
 
-    // get user after update
-    const updated = await model("users").findOne(query).lean();
+    await user.save();
 
     return {
       code: 200,
-      data: updated,
+      data: { message: "updated !" },
     };
   } catch (e) {
     return {

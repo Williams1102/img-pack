@@ -1,9 +1,29 @@
-var express = require('express');
-var router = express.Router();
+const jwt = require("express-jwt");
+const { JWT_KEY } = require("../config");
+const getTokenFromHeaders = (req) => {
+  const {
+    headers: { authorization },
+  } = req;
+  console.log(authorization);
+  if (authorization && authorization.split(" ")[0] === "Token") {
+    return authorization.split(" ")[1];
+  }
+  return "";
+};
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-module.exports = router;
+const auth = {
+  required: jwt({
+    secret: JWT_KEY,
+    algorithms: ["HS256"],
+    userProperty: "payload",
+    getToken: getTokenFromHeaders,
+  }),
+  optional: jwt({
+    secret: JWT_KEY,
+    algorithms: ["HS256"],
+    userProperty: "payload",
+    credentialsRequired: false,
+    getToken: getTokenFromHeaders,
+  }),
+};
+module.exports = auth;
