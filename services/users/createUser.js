@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
 const config = require("../../config");
-
-const { model } = mongoose;
+const Users = mongoose.model("users");
 const { hash } = bcrypt;
 const { emailRegex, SALT_BCRYPT } = config;
 const createUser = async ({ infoUser }) => {
@@ -24,24 +23,22 @@ const createUser = async ({ infoUser }) => {
         error: { message: "Password and confirm password is not matched !" },
       };
     }
-    
-    // hash password
-    let hashPassword = await hash(password, SALT_BCRYPT);
-    // info user before save in database
+
     const userData = {
       email,
-      password: hashPassword,
+      password,
       birthday: moment(birthday, ["DD-MM-YYYY", "DD/MM/YYYY"]).unix() * 1000,
     };
-    // create and get info user in database
-    const created = await model("users").create(userData);
+
+    const userDb = new Users(userData);
+    await userDb.setPassword(userData.password);
+    await userDb.save();
 
     return {
       code: 200,
-      data: created,
+      data: userDb.toAuthJSON(),
     };
   } catch (e) {
-
     return {
       code: 500,
       error: { message: e.message },

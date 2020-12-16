@@ -6,10 +6,12 @@ const favorites = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true,
     },
     topic: {
       type: Schema.Types.ObjectId,
       ref: "topics",
+      required: true,
     },
   },
   { timestamp: true }

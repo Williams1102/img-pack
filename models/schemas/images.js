@@ -9,18 +9,18 @@ const images = new Schema(
     },
     description: {
       type: String,
-      required: true,
     },
     author: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true,
     },
     collectionId: {
       type: Schema.Types.ObjectId,
       ref: "collections",
     },
   },
-  { timestamp: true }
+  { timestamp: true },
 );
 
 images.index({ source: 1, author: 1, collectionId: 1 });
