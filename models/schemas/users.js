@@ -22,7 +22,7 @@ const UsersSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: "/public/images/default.png",
+      default: "/images/default.png",
     },
     gender: {
       type: String,
@@ -40,6 +40,7 @@ UsersSchema.methods.setPassword = async function (password) {
 
 UsersSchema.methods.validatePassword = async function (password) {
   const tf = await compareSync(password, this.password);
+  return tf;
 };
 
 UsersSchema.methods.generateJWT = function () {
