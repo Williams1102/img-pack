@@ -6,10 +6,12 @@ const imageTopics = new Schema(
     topic: {
       type: Schema.Types.ObjectId,
       ref: "topics",
+      required: true,
     },
     image: {
       type: Schema.Types.ObjectId,
       ref: "images",
+      required: true,
     },
   },
   { timestamp: true }

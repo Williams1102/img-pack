@@ -10,9 +10,10 @@ const topics = new Schema(
     slugName: {
       type: String,
       required: true,
+      unique: true,
     },
   },
-  { timestamp: true }
+  { timestamp: true },
 );
 
 topics.index({ slugName: 1 });

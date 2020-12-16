@@ -14,11 +14,12 @@ const collections = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true,
     },
   },
   { timestamp: true }
 );
 
-collections.index({ name: 1, author: 1 });
+collections.index({ slugName: 1, author: 1 });
 
 module.exports = collections;

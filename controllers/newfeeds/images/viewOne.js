@@ -1,8 +1,8 @@
-const createImage = require("services/images/createImage");
+const viewOneImage = require("services/images/viewOneImage");
 
 const createImageController = async (req, res) => {
-  const result = await createImage({
-    imageInfo: req.body,
+  const result = await viewOneImage({
+    imageId: req.params.imageId,
     authPayload: req.payload,
   });
   return res.status(result.code).json(result);

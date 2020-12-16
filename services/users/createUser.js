@@ -7,7 +7,6 @@ const { hash } = bcrypt;
 const { emailRegex, SALT_BCRYPT } = config;
 const createUser = async ({ infoUser }) => {
   try {
-    console.log(infoUser);
     const { email, password, confirmPassword, birthday } = infoUser;
     //check email
     const isEmail = emailRegex.test(email);

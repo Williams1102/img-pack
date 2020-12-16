@@ -1,8 +1,8 @@
-const createImage = require("services/images/createImage");
+const viewAllByCollection = require("services/images/showByCollection");
 
 const createImageController = async (req, res) => {
-  const result = await createImage({
-    imageInfo: req.body,
+  const result = await viewAllByCollection({
+    collectionId: req.params.collectionId,
     authPayload: req.payload,
   });
   return res.status(result.code).json(result);

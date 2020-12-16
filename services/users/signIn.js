@@ -3,7 +3,6 @@ const { model } = mongoose;
 const passport = require("passport");
 const signIn = async ({ bodyInfo }) => {
   try {
-    console.log(bodyInfo);
     return passport.authenticate("local", { session: false }, (err, passportUser, info) => {
       if (err) {
         return next(err);

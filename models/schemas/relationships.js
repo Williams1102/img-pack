@@ -6,10 +6,12 @@ const relationships = new Schema(
     follower: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true
     },
     following: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true
     },
   },
   { timestamp: true }
