@@ -16,13 +16,7 @@ const createUser = async ({ infoUser }) => {
         error: { message: "You need to fill email !" },
       };
     }
-    // check password and confirm password is matched
-    if (password !== confirmPassword) {
-      return {
-        code: 200,
-        error: { message: "Password and confirm password is not matched !" },
-      };
-    }
+    
 
     const userData = {
       email,
