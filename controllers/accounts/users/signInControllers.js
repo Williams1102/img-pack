@@ -2,6 +2,8 @@ const passport = require("passport");
 
 const createUserControllers = async (req, res, next) => {
   try {
+    if (req.body.username) req.body.email = req.body.username;
+    // console.log(req.body);
     passport.authenticate("local", { session: false }, (err, passportUser, info) => {
       if (err) {
         return next(err);
