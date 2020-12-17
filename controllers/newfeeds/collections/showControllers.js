@@ -1,4 +1,4 @@
-const showCollection = require("services/collections/showList");
+const showCollection = require("_services/collections/showList");
 
 const showCollectionControllers = async (req, res) => {
   try {

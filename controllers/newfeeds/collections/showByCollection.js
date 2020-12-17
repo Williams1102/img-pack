@@ -1,4 +1,4 @@
-const viewAllByCollection = require("services/images/showByCollection");
+const viewAllByCollection = require("_services/images/showByCollection");
 
 const createImageController = async (req, res) => {
   const result = await viewAllByCollection({

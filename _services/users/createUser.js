@@ -31,6 +31,7 @@ const createUser = async ({ infoUser }) => {
     };
 
     const userDb = new Users(userData);
+    userDb.setUsername();
     await userDb.setPassword(userData.password);
     await userDb.save();
 

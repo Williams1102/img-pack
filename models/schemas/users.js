@@ -20,6 +20,9 @@ const UsersSchema = new Schema(
       type: Date,
       required: true,
     },
+    username: {
+      type: String,
+    },
     avatar: {
       type: String,
       default: "/images/default.png",
@@ -36,6 +39,10 @@ const UsersSchema = new Schema(
 UsersSchema.methods.setPassword = async function (password) {
   // hash password
   this.password = await hash(password, SALT_BCRYPT);
+};
+
+UsersSchema.methods.setUsername = function () {
+  this.username = this.email.split("@")[0];
 };
 
 UsersSchema.methods.validatePassword = async function (password) {
