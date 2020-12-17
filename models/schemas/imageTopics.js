@@ -14,7 +14,7 @@ const imageTopics = new Schema(
       required: true,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 imageTopics.index({ topic: 1, image: 1 });

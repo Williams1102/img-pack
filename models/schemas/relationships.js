@@ -14,7 +14,7 @@ const relationships = new Schema(
       required: true
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 relationships.index({ follower: 1, following: 1 });

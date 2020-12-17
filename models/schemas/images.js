@@ -20,7 +20,7 @@ const images = new Schema(
       ref: "collections",
     },
   },
-  { timestamp: true },
+  { timestamps: true },
 );
 
 images.index({ source: 1, author: 1, collectionId: 1 });

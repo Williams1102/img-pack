@@ -14,7 +14,7 @@ const favorites = new Schema(
       required: true,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 favorites.index({ user: 1 });

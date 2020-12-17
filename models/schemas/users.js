@@ -33,7 +33,7 @@ const UsersSchema = new Schema(
       default: "other",
     },
   },
-  { timestamp: true },
+  { timestamps: true },
 );
 
 UsersSchema.methods.setPassword = async function (password) {

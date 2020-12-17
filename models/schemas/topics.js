@@ -13,7 +13,7 @@ const topics = new Schema(
       unique: true,
     },
   },
-  { timestamp: true },
+  { timestamps: true },
 );
 
 topics.index({ slugName: 1 });

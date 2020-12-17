@@ -17,7 +17,7 @@ const collections = new Schema(
       required: true,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 collections.index({ slugName: 1, author: 1 });

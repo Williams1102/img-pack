@@ -14,7 +14,7 @@ const bookmarkImages = new Schema(
       required: true,
     },
   },
-  { timestamp: true },
+  { timestamps: true },
 );
 
 bookmarkImages.index({ user: 1, image: 1 });

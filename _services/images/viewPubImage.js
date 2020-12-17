@@ -3,7 +3,7 @@ const Images = mongoose.model("images");
 
 const viewPublishImages = async () => {
   try {
-    const images = await Images.find({}).populate("author", "_id username avatar").sort({ timestamp: 1 });
+    const images = await Images.find({}).populate("author", "_id username avatar").sort({ timestamp: -1 });
 
     return {
       code: 200,
