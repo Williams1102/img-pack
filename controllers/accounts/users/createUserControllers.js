@@ -5,9 +5,9 @@ const createUserControllers = async (req, res) => {
     const result = await createUser({ infoUser: req.body });
     return res.status(result.code).json(result);
   } catch (e) {
-    res.status(500).json({
+    return res.status(500).json({
       code: 500,
-      error: e.message,
+      error: { message: e.message },
     });
   }
 };

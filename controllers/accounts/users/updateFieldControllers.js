@@ -7,7 +7,10 @@ const updateInfo = async (req, res) => {
     const result = await updateUser({ info: req.body, authPayload: req.payload });
     res.json(result);
   } catch (e) {
-    res.status(500).json({ error: { message: e.message } });
+    return res.status(500).json({
+      code: 500,
+      error: { message: e.message },
+    });
   }
 };
 
