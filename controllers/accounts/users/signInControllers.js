@@ -19,7 +19,10 @@ const createUserControllers = async (req, res, next) => {
       return res.status(400).json(info);
     })(req, res, next);
   } catch (e) {
-    return res.status(500).json({ error: { message: e.message } });
+    return res.status(500).json({
+      code: 500,
+      error: { message: e.message },
+    });
   }
 };
 

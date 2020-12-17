@@ -14,11 +14,11 @@ passport.use(
     (email, password, done) => {
       Users.findOne({ email })
         .then(async (user) => {
-          const tf = await user.validatePassword(password);
-          if (!user || !tf) {
-            return done(null, false, { errors: { "email or password": "is invalid" } });
+          let tf = !!user;
+          if (tf) tf = await user.validatePassword(password);
+          if (!tf) {
+            return done(null, false, { code: 400, error: { "email or password": "is invalid" } });
           }
-
           return done(null, user);
         })
         .catch(done);
