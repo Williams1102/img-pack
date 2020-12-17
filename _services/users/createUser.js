@@ -7,7 +7,7 @@ const { hash } = bcrypt;
 const { emailRegex, SALT_BCRYPT } = config;
 const createUser = async ({ infoUser }) => {
   try {
-    const { email, password, confirmPassword, birthday } = infoUser;
+    const { email, password, confirmPassword, age } = infoUser;
     //check email
     const isEmail = emailRegex.test(email);
     if (!isEmail) {
@@ -27,7 +27,7 @@ const createUser = async ({ infoUser }) => {
     const userData = {
       email,
       password,
-      birthday: moment(birthday, ["DD-MM-YYYY", "DD/MM/YYYY"]).unix() * 1000,
+      birthday: moment().subtract(parseInt(age), "years").unix() * 1000,
     };
 
     const userDb = new Users(userData);
