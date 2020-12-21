@@ -1,7 +1,7 @@
 module.exports = {
-  DB_IMGPACK: process.env.DB_IMGPACK,
+  DB_IMGPACK: process.env.IS_PRO === 1 ? process.env.PRO_DB : process.env.DB_IMGPACK,
   SALT_BCRYPT: parseInt(process.env.SALT_BCRYPT),
   emailRegex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
   SESSION_KEY: process.env.SECRET_KEY,
-  JWT_KEY: process.env.SECRET_KEY
+  JWT_KEY: process.env.SECRET_KEY,
 };
