@@ -5,8 +5,11 @@ const ImageTopics = mongoose.model("imageTopics");
 const uploadImage = async ({ authPayload, imageId }) => {
   try {
     const { id } = authPayload;
+    const deleted = await Images.findOneAndDelete({ author: id, _id: imageId });
+    if (!deleted) {
+      throw new Error("not delete");
+    }
     await ImageTopics.deleteMany({ image: imageId });
-    await Images.findOneAndDelete({ author: id, _id: imageId });
 
     return {
       code: 200,
