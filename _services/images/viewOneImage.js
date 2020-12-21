@@ -6,7 +6,7 @@ const viewOne = async ({ authPayload, imageId }) => {
   try {
     const { id } = authPayload;
 
-    const image = await Images.findOne({ author: id, _id: imageId }).populate("collectionId");
+    const image = await Images.findOne({ author: id, _id: imageId }).populate("collectionId", "_id name");
 
     return {
       code: 200,
