@@ -18,6 +18,7 @@ const images = new Schema(
     collectionId: {
       type: Schema.Types.ObjectId,
       ref: "collections",
+      required: true,
     },
   },
   { timestamps: true },

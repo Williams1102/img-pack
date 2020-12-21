@@ -15,6 +15,12 @@ const uploadImage = async ({ imageInfo, authPayload }) => {
         error: { message: "please provide topic name list !" },
       };
     }
+    if (!collectionId) {
+      return {
+        code: 400,
+        error: { message: "please provide collection !" },
+      };
+    }
     const topicList = [...topics];
     if (!source) {
       return {
