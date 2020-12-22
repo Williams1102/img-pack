@@ -5,7 +5,7 @@ const bookmarkedUser = async ({ authPayload }) => {
   try {
     const { id } = authPayload;
 
-    const founder = await Relationships.find({ follower: id });
+    const founder = await Relationships.find({ follower: id }).populate("following", "username avatar");
 
     return {
       code: 200,
