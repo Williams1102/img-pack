@@ -3,8 +3,9 @@ const Relationships = mongoose.model("relationships");
 const Users = mongoose.model("users");
 const Images = mongoose.model("images");
 
-const infoUser = async ({ userId }) => {
+const infoUser = async ({ userId, authPayload }) => {
   try {
+    const isFollow = await Relationships.findOne({ following: userId, follower: authPayload.id });
     const followersNumber = await Relationships.countDocuments({ following: userId });
     const followingsNumber = await Relationships.countDocuments({ follower: userId });
     const imageNumber = await Images.countDocuments({ author: userId });
@@ -18,6 +19,7 @@ const infoUser = async ({ userId }) => {
           followers: followersNumber,
           followings: followingsNumber,
           images: imageNumber,
+          isFollowed: !!isFollow,
         },
       },
     };
