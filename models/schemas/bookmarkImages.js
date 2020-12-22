@@ -8,7 +8,7 @@ const bookmarkImages = new Schema(
       ref: "users",
       required: true,
     },
-    image: {
+    imageId: {
       type: Schema.Types.ObjectId,
       ref: "images",
       required: true,
