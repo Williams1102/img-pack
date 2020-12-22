@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 const Notifications = mongoose.model("notifications");
 
-const addNewNotifications = async ({ contents, authPayload }) => {
+const addNewNotifications = async ({ contents, userId }) => {
   try {
     const { title, message, endpoint } = contents;
-    const { id } = authPayload;
     const newData = {
       title,
       message,
       endpoint,
-      belongsTo: id,
+      belongsTo: userId,
     };
     const notification = await Notifications.create(newData);
 
