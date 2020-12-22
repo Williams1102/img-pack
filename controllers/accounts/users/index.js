@@ -3,4 +3,5 @@ module.exports = {
   signIn: require("./signInControllers"),
   changeInfo: require("./updateFieldControllers"),
   getProfile: require("./getInfoControllers"),
+  getInfoUser: require("./getInfoUser"),
 };

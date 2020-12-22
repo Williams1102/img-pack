@@ -15,7 +15,7 @@ const following = async ({ userId, authPayload }) => {
       following: userId,
     };
 
-    const created = await Relationships.findOneAndUpdate(initData, { upsert: true }).populate(
+    const created = await Relationships.findOneAndUpdate(initData, initData, { upsert: true, new: true }).populate(
       "following",
       "username avatar",
     );
