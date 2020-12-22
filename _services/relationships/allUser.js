@@ -6,7 +6,7 @@ const allUser = async ({ authPayload }) => {
   try {
     const { id } = authPayload;
 
-    const founder = await Users.find({}).select("_id username");
+    const founder = await Users.find({}).select("_id username avatar");
     const followers = await Relationships.find({ following: id });
 
     return {
