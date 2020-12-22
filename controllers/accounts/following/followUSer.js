@@ -5,7 +5,7 @@ const followControllers = async (req, res) => {
     userId: req.body.userId,
     authPayload: req.payload,
   });
-  return result.status(result.code).json(result);
+  return res.status(result.code).json(result);
 };
 
 module.exports = followControllers;

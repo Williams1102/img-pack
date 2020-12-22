@@ -11,4 +11,5 @@ module.exports = {
   relationships: model("relationships", schema.relationships),
   topics: model("topics", schema.topics),
   users: model("users", schema.users),
+  notifications: model("notifications", schema.notifications),
 };

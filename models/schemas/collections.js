@@ -9,6 +9,7 @@ const collections = new Schema(
     },
     slugName: {
       type: String,
+      unique: true,
       required: true,
     },
     author: {

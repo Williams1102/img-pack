@@ -8,13 +8,14 @@ const { hash } = bcrypt;
 const { emailRegex, SALT_BCRYPT } = config;
 const updateUser = async ({ info, authPayload }) => {
   try {
-    const { birthday, gender, password, newPassword, confirmPassword, username } = info;
+    const { birthday, gender, password, newPassword, confirmPassword, username, avatar } = info;
     const { email, id } = authPayload;
     const query = { email, _id: id };
     // find user by email in database
     const user = await model("users").findOne(query);
-    console.log(user);
+    // console.log(user);
     if (username) user.username = username;
+    if (avatar) user.avatar = avatar;
     // case: update gender
     if (gender) user.gender = gender;
     // case: update birthday

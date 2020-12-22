@@ -25,7 +25,7 @@ const UsersSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: "/images/default.png",
+      default: "https://imgpack.s3-ap-southeast-1.amazonaws.com/default.png",
     },
     gender: {
       type: String,
