@@ -7,4 +7,5 @@ module.exports = {
   relationships: require("./relationships"),
   topics: require("./topics"),
   users: require("./users"),
+  notifications: require("./notifications"),
 };
