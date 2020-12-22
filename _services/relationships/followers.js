@@ -5,7 +5,7 @@ const followers = async ({ authPayload }) => {
   try {
     const { id } = authPayload;
 
-    const founder = await Relationships.find({ following: id });
+    const founder = await Relationships.find({ following: id }).populate("follower", "username avatar");
 
     return {
       code: 200,

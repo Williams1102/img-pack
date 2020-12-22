@@ -32,7 +32,7 @@ const uploadImage = async ({ imageInfo, authPayload }) => {
     const newData = {
       source,
       description,
-      collectionId: collectionId || null,
+      collectionId: collectionId,
       author: id,
     };
     const image = await Images.create(newData);

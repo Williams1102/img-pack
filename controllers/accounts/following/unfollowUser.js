@@ -2,10 +2,10 @@ const unfollowing = require("_services/relationships/unfollowing");
 
 const unfollowControllers = async (req, res) => {
   const result = await unfollowing({
-    userId: req.body.userId,
+    userId: req.params.userId,
     authPayload: req.payload,
   });
-  return result.status(result.code).jso0n(result);
+  return res.status(result.code).json(result);
 };
 
 module.exports = unfollowControllers;

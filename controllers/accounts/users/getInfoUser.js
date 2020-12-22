@@ -2,8 +2,8 @@ const getUser = require("_services/users/infoUser");
 
 const getInfo = async (req, res) => {
   try {
-    const { id } = req.payload;
-    const result = await getUser({ userId: id });
+    const { userId } = req.params;
+    const result = await getUser({ userId: userId });
     return res.status(result.code).json(result);
     // return res.json(req.payload);
   } catch (e) {

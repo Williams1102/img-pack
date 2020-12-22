@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 const Images = mongoose.model("images");
 
-const uploadImage = async ({ authPayload }) => {
+const uploadImage = async ({ userId }) => {
   try {
-    const { id } = authPayload;
-
-    const images = await Images.find({ author: id }).select("-collectionId");
+    const images = await Images.find({ author: userId }).select("-collectionId");
 
     return {
       code: 200,
