@@ -11,7 +11,7 @@ const allUser = async ({ authPayload }) => {
 
     return {
       code: 200,
-      data: { users: founder, followed: followers.map((o) => o.following) },
+      data: { users: founder.filter((o) => o._id !== id), followed: followers.map((o) => o.following) },
     };
   } catch (e) {
     return {

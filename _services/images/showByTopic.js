@@ -11,7 +11,11 @@ const uploadImage = async ({ topicID }) => {
     let imageList = [];
     for (let i = 0; i < imageIDs.length; i++) {
       const e = imageIDs[i].image;
-      const image = await Images.findById(e).populate("author").lean();
+      const image = await Images.findById(e)
+        .select("-collectionId")
+        .sort({ updatedAt: -1 })
+        .populate("author", "_id username avatar")
+        .lean();
       imageList.push(image);
     }
 

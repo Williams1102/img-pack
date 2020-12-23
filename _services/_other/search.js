@@ -22,3 +22,5 @@ const searchService = async ({ authPayload }) => {
     };
   }
 };
+
+module.exports = searchService;

@@ -21,7 +21,8 @@ const uploadImage = async ({ imageInfo, authPayload }) => {
         error: { message: "please provide collection !" },
       };
     }
-    const topicList = [...topics];
+    let topicList = [];
+    if (Array.isArray(topics)) topicList = [...topics]; else topicList.push(topics);
     if (!source) {
       return {
         code: 400,
