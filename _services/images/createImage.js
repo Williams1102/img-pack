@@ -22,7 +22,8 @@ const uploadImage = async ({ imageInfo, authPayload }) => {
       };
     }
     let topicList = [];
-    if (Array.isArray(topics)) topicList = [...topics]; else topicList.push(topics);
+    if (Array.isArray(topics)) topicList = topics;
+    else topicList.push(topics);
     if (!source) {
       return {
         code: 400,

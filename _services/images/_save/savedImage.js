@@ -1,14 +1,22 @@
 const mongoose = require("mongoose");
 const bookmarkImages = mongoose.model("bookmarkImages");
+const Images = mongoose.model("images");
 
 const saveToMyImages = async ({ imageId, authPayload }) => {
   try {
+    const image = await Images.findOne({ _id: imageId });
+    if (authPayload.id == image.author) {
+      return {
+        code: 400,
+        error: { message: "image was yourself!" },
+      };
+    }
     const bookmark = {
       user: authPayload.id,
       imageId: imageId,
     };
 
-    const saved = await bookmarkImages.create(bookmark);
+    const saved = await bookmarkImages.findOneAndUpdate(bookmark, bookmark, { upsert: true, new: true });
 
     return {
       code: 200,

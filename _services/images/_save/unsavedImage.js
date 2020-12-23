@@ -8,11 +8,19 @@ const unsaveToMyImages = async ({ imageId, authPayload }) => {
       imageId: imageId,
     };
 
-    const saved = await bookmarkImages.findByIdAndDelete(query);
-
+    const saved = await bookmarkImages.findOneAndDelete(query);
+    if (!saved) {
+      return {
+        code: 400,
+        // dataErr: saved,
+      };
+    }
     return {
       code: 200,
-      data: { message: "unsaved !" },
+      data: {
+        message: "unsaved !",
+        // dataError: saved,
+      },
     };
   } catch (e) {
     return {
