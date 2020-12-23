@@ -5,7 +5,7 @@ const Users = mongoose.model("users");
 const searchService = async ({ authPayload }) => {
   try {
     const { id } = authPayload;
-    const userss = await Users.find({}).select("_id username");
+    const userss = await Users.find({}).select("_id username avatar");
     const topicss = await Topics.find({}).select("_id name");
     const list = {
       users: userss.filter((user) => user._id !== id),
