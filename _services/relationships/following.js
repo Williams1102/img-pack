@@ -9,7 +9,7 @@ const bookmarkedUser = async ({ authPayload }) => {
 
     return {
       code: 200,
-      data: founder,
+      data: founder.map((o) => o.following),
     };
   } catch (e) {
     return {
