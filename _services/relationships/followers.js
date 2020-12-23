@@ -9,7 +9,7 @@ const followers = async ({ authPayload }) => {
 
     return {
       code: 200,
-      data: founder,
+      data: founder.map((o) => o.follower),
     };
   } catch (e) {
     return {
