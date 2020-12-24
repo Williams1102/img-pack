@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const session = require("express-session");
-
+const bodyParser = require("body-parser");
 require("dotenv").config();
 require("models/connect");
 require("models/schema");
@@ -32,7 +32,8 @@ app.use(fileUpload({ limits: { fileSize: 50 * 1024 * 1024 } }));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
