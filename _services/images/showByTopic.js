@@ -2,11 +2,13 @@ const mongoose = require("mongoose");
 const Images = mongoose.model("images");
 const ImageTopics = mongoose.model("imageTopics");
 const Topics = mongoose.model("topics");
+const BookmarkImages = mongoose.model("bookmarkImages");
 
-const uploadImage = async ({ topicID }) => {
+const uploadImage = async ({ topicID, authPayload }) => {
   try {
     const topic = await Topics.findById(topicID).select("name");
     const imageIDs = await ImageTopics.find({ topic: topicID }).select("image");
+    const lib = await BookmarkImages.find({ user: authPayload.id });
 
     let imageList = [];
     for (let i = 0; i < imageIDs.length; i++) {
@@ -16,7 +18,8 @@ const uploadImage = async ({ topicID }) => {
         .sort({ updatedAt: -1 })
         .populate("author", "_id username avatar")
         .lean();
-      imageList.push(image);
+
+      imageList.push({ ...image, isSave: lib.includes(e) });
     }
 
     return {
