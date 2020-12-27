@@ -9,7 +9,7 @@ const uploadImage = async ({ topicID, authPayload }) => {
     const topic = await Topics.findById(topicID).select("name");
     const imageIDs = await ImageTopics.find({ topic: topicID }).select("image");
     const lib = await BookmarkImages.find({ user: authPayload.id });
-
+    const libs = lib.map((o) => o.imageId.toString());
     let imageList = [];
     for (let i = 0; i < imageIDs.length; i++) {
       const e = imageIDs[i].image;
@@ -19,7 +19,7 @@ const uploadImage = async ({ topicID, authPayload }) => {
         .populate("author", "_id username avatar")
         .lean();
 
-      imageList.push({ ...image, isSave: lib.includes(e) });
+      imageList.push({ ...image, isSave: libs.includes(e.toString()) });
     }
 
     return {

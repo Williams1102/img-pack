@@ -5,10 +5,11 @@ const BookmarkImages = mongoose.model("bookmarkImages");
 const viewPublishImages = async ({ authPayload }) => {
   try {
     const images = await Images.find({}).populate("author", "_id username avatar").sort({ updatedAt: -1 }).lean();
-    const lib = await BookmarkImages.find({ user: authPayload.id });
+    const lib = await BookmarkImages.find({ user: authPayload.id }).select("imageId");
+    const libImg = lib.map((o) => o.imageId.toString());
     const list = images.map((image) => {
       if (authPayload.id == image.author._id) return { ...image, isSave: "my images" };
-      else return { ...image, isSave: lib.includes(image._id) };
+      else return { ...image, isSave: libImg.includes(image._id.toString()) };
     });
     return {
       code: 200,
