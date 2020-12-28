@@ -14,7 +14,7 @@ const saveToMyImages = async ({ authPayload }) => {
 
     return {
       code: 200,
-      data: saved.map((o) => o.imageId),
+      data: saved.map((o) => o.imageId).filter((o) => o),
     };
   } catch (e) {
     return {
