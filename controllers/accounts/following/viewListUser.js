@@ -1,4 +1,4 @@
-const viewlist = require("_services/relationships/allUser");
+const viewlist = require("services/relationships/allUser");
 
 const viewUsersControllers = async (req, res) => {
   const result = await viewlist({

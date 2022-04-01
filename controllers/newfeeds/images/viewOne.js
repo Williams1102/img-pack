@@ -1,4 +1,4 @@
-const viewOneImage = require("_services/images/viewOneImage");
+const viewOneImage = require("services/images/viewOneImage");
 
 const createImageController = async (req, res) => {
   const result = await viewOneImage({

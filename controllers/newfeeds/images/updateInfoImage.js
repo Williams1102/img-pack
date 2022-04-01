@@ -1,4 +1,4 @@
-const updateinfo = require("_services/images/updateImage");
+const updateinfo = require("services/images/updateImage");
 
 const updateImgController = async (req, res) => {
   const result = await updateinfo({

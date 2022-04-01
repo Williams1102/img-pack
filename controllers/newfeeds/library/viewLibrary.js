@@ -1,4 +1,4 @@
-const saved = require("_services/images/_save/viewLibrary");
+const saved = require("services/images/save/viewLibrary");
 
 const viewLib = async (req, res) => {
   const result = await saved({ authPayload: req.payload });

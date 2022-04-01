@@ -1,4 +1,4 @@
-const viewAll = require("_services/images/viewPubImage");
+const viewAll = require("services/images/viewPubImage");
 
 const viewAllController = async (req, res) => {
   const result = await viewAll({ authPayload: req.payload });

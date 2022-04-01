@@ -1,4 +1,4 @@
-const changeName = require("_services/collections/rename");
+const changeName = require("services/collections/rename");
 
 const renameCollectionControllers = async (req, res) => {
   try {

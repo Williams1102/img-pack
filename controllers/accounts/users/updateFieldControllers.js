@@ -1,4 +1,4 @@
-const updateUser = require("_services/users/updateUser");
+const updateUser = require("services/users/updateUser");
 
 const updateInfo = async (req, res) => {
   try {

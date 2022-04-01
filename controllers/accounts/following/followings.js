@@ -1,4 +1,4 @@
-const following = require("_services/relationships/following");
+const following = require("services/relationships/following");
 
 const followingController = async (req, res) => {
   const result = await following({ authPayload: req.payload });

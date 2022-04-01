@@ -1,4 +1,4 @@
-const deleteImage = require("_services/images/deleteImage");
+const deleteImage = require("services/images/deleteImage");
 
 const delImageController = async (req, res) => {
   const result = await deleteImage({ authPayload: req.payload, imageId: req.params.imageId });

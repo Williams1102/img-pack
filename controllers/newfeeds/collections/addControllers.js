@@ -1,4 +1,4 @@
-const createCollection = require("_services/collections/createCollection");
+const createCollection = require("services/collections/createCollection");
 
 const addNewCollectionControllers = async (req, res) => {
   try {

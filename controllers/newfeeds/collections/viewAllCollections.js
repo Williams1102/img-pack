@@ -1,4 +1,4 @@
-const showCollection = require("_services/collections/viewAllCollections");
+const showCollection = require("services/collections/viewAllCollections");
 
 const showCollectionControllers = async (req, res) => {
   try {

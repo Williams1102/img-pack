@@ -1,4 +1,4 @@
-const trendingUser = require("_services/users/trendingUSers");
+const trendingUser = require("services/users/trendingUSers");
 
 const trendingUserController = async (req, res) => {
   const result = await trendingUser({});

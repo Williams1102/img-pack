@@ -1,4 +1,4 @@
-const saved = require("_services/images/_save/savedImage");
+const saved = require("services/images/save/savedImage");
 
 const saveToLib = async (req, res) => {
   const result = await saved({ imageId: req.params.imageId, authPayload: req.payload });

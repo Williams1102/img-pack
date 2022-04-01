@@ -1,4 +1,4 @@
-const unfollowing = require("_services/relationships/unfollowing");
+const unfollowing = require("services/relationships/unfollowing");
 
 const unfollowControllers = async (req, res) => {
   const result = await unfollowing({

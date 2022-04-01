@@ -1,4 +1,4 @@
-const viewImages = require("_services/images/showByTopic");
+const viewImages = require("services/images/showByTopic");
 
 const viewController = async (req, res) => {
   const result = await viewImages({

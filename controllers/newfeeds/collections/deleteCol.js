@@ -1,4 +1,4 @@
-const removeCol = require("_services/collections/deleteCollection");
+const removeCol = require("services/collections/deleteCollection");
 
 const removeCollectionControllers = async (req, res) => {
   try {

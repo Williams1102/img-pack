@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Relationships = mongoose.model("relationships");
-const addMessages = require("_services/notifications/addNewMessage");
+const addMessages = require("services/notifications/addNewMessage");
 
 const following = async ({ userId, authPayload }) => {
   try {
